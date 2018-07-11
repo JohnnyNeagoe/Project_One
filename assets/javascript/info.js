@@ -5,8 +5,6 @@ var userLocation = ["Toronto", "Canada"];
 var restCountriesURL;
 var geonamesURL;
 var wikipediaURL;
-var wikipediaURL2;
-
 
 var googleAPIKey = "AIzaSyCN3EyjOpztvL3D3bhE9zYi7KoSpczjM1s";
 var googlePlaceID;
@@ -28,6 +26,13 @@ var newsAPIKey = "6bf648adc8a74ad8830c059dea6040e1";
 //https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=6bf648adc8a74ad8830c059dea6040e1
 var newsQueryURL;
 var newsDate;
+
+var NOAAAPIKey = "DNAzgdbJbGUOWwjRggETatgbpadNAEVY";
+
+var 
+
+//http://climatedataapi.worldbank.org/climateweb/rest/v1/country/mavg/tas/1980/1999/CAN
+
 
 // Declare Functions
 function googlePlacesQuery() {
@@ -136,6 +141,8 @@ function countryInfoQuery() {
     });
 
 }
+
+
 
 //Unnecessary because free news plan is max 1 month in the past.
 /* function dateBacktrack() {
