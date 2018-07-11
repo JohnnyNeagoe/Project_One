@@ -46,6 +46,76 @@ nav > a {
     font-weight: bold;
 }
 
+#country_info_container {
+    text-align: center;
+    border: solid 1px black;
+}
+
+#destination_name {
+    text-align: center;
+    margin: 30px;
+}
+
+.flag {
+    max-width: 80%;
+}
+
 #city_snapshot {
     text-align: center;
+    border: solid 1px black;
+}
+
+.carousel {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel_image {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: red;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: red;
+}
+
+
+#country_headlines_container {
+    text-align: center;
+    border: solid 1px black;
+}
+
+
+.story_title {
+    font-weight: bold;
+
+}
+
+.story_description {
+    color: gray;
+    font-size: small;
+
 }
