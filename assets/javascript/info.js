@@ -1,4 +1,5 @@
 // Declare Variables
+var userDestinationString;
 var userDestination = ["Kyoto", "Japan"];
 var userLocation = ["Toronto", "Canada"];
 var destinationLatLng;
@@ -249,6 +250,20 @@ var latlng = {"lat": 35.0116363, "lng": 135.7680294}
 // Code & Listeners
 
 $(document).ready(function() {
+    userDestinationString = localStorage.getItem("destination");
+    userDestination = userDestinationString.split(",");
+
+    for (var i = 0; i < userDestination.length; i++) {
+        userDestination[i] = userDestination[i].trim();
+    }
+
+
+    if (userDestination.length > 2) {
+        userDestination.splice(1, userDestination.length - 2);
+        console.log(userDestination);
+    }
+
+    
 
     $("#destination_name").text(userDestination[0] + ", " + userDestination[1]);
 
@@ -258,7 +273,6 @@ $(document).ready(function() {
     newsQuery();
 
     console.log(latlng);
-    
 
 
 

@@ -23,6 +23,7 @@ function initAutocomplete() {
         $(".sample-div").text(locationChosen);
         $("#nav_container").show();
         $("#quote_container").remove();
+        localStorage.setItem("destination", locationChosen);
         console.log(locationChosen);
     });
     getLocation();
