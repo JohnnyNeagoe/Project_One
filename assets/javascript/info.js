@@ -1,6 +1,7 @@
 // Declare Variables
-var userDestination = ["London", "United Kingdom"];
+var userDestination = ["Kyoto", "Japan"];
 var userLocation = ["Toronto", "Canada"];
+var destinationLatLng;
 
 var restCountriesURL;
 var geonamesURL;
@@ -28,22 +29,42 @@ var newsQueryURL;
 var newsDate;
 
 var NOAAAPIKey = "DNAzgdbJbGUOWwjRggETatgbpadNAEVY";
+var NOAAQueryURL;
 
-var 
-
+var WorldBankQueryURL;
+var iso3name;
+var month;
 //http://climatedataapi.worldbank.org/climateweb/rest/v1/country/mavg/tas/1980/1999/CAN
+
+var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+];
 
 
 // Declare Functions
 function googlePlacesQuery() {
     mapsQueryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userDestination[0] + "+" + userDestination[1] + "&language=en&key=" + googleAPIKey;
+    console.log(mapsQueryURL);
 
     $.ajax({
         url: mapsQueryURL,
         method: "GET"
     }).then(function(response) {
         googlePlaceID = response.results[0].place_id;
-    }).then(populatePhotoArray);
+        destinationLatLng = response.results[0].geometry.location;
+        console.log(destinationLatLng);
+    }).then(populatePhotoArray).then(initMap);
 }
 
 function populatePhotoArray() {
@@ -73,7 +94,7 @@ function populatePhotoCarousel() {
 
 }
 
-function geonamesQuery() {
+/* function geonamesQuery() {
     geonamesURL = "http://api.geonames.org/wikipediaSearchJSON?q=" + userDestination[0] + "&maxRows=10&username=msvendsentan";
     
     $.ajax({
@@ -82,7 +103,7 @@ function geonamesQuery() {
     }).then(function(response) {
         $("#city_description").html("<p>" + response.geonames[0].summary + "</p>")
     });
-}
+} */
 
 function wikipediaQuery() {
     wikipediaURL = "https://en.wikipedia.org/api/rest_v1/page/summary/" + userDestination[0];
@@ -125,11 +146,13 @@ function newsQuery() {
 
 function countryInfoQuery() {
     restCountriesURL = "https://restcountries.eu/rest/v2/name/" + userDestination[1];
+    console.log(restCountriesURL);
 
     $.ajax({
         url: restCountriesURL,
         method: "GET"
     }).then(function(response) {
+        iso3name = response[0].alpha3Code;
 
         $("#country_info_container")
             .append("<h2>A snapshot of " + response[0].name + "</h2>")
@@ -138,8 +161,61 @@ function countryInfoQuery() {
             .append("<p><b>Capital:</b> " + response[0].capital + "</p>")
             .append("<p><b>Primary Currency:</b> " + response[0].currencies[0].symbol + " " + response[0].currencies[0].name + "</p>")
 
+    }).then(countryClimateQuery);
+
+}
+
+function countryClimateQuery() {
+    WorldBankQueryURL = "http://climatedataapi.worldbank.org/climateweb/rest/v1/country/mavg/tas/1980/1999/" + iso3name;
+    console.log(WorldBankQueryURL);
+
+    month = new Date().getUTCMonth();
+
+    $.ajax({
+        url: WorldBankQueryURL,
+        method: "GET"
+    }).then(function(climateResponse) {
+
+        var fullClimateObject = climateResponse.find( source => source.gcm = "cccma_cgcm3_1");
+        var climate = fullClimateObject.monthVals[month];
+        $("#country_info_container").append("<p><b>Climate in " + months[month] + ":</b> " + climate + " °C</p>")
+
     });
 
+
+}
+
+var map, service;
+
+function initMap() {
+    // The map, centered at Uluru
+    map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 12, center: destinationLatLng});
+    // The marker, positioned at Uluru
+    var marker = new google.maps.Marker({position: destinationLatLng, map: map});
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+        location: destinationLatLng,         
+        radius: 20000,
+        keyword: "Points of Interest"
+    }, function (results, status) {
+        console.log(results);
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            results.forEach(function (p) {
+                var m = new google.maps.Marker({
+                   position: p.geometry.location,
+                   icon: {
+                        url: p.icon,
+                        scaledSize: new google.maps.Size(24,24)
+                   },
+                   title: p.name,
+                   map: map
+                });                  
+            });
+        } else {
+            alert(status);
+        }
+    });    
 }
 
 
@@ -167,7 +243,7 @@ function countryInfoQuery() {
 } */
 
 
-
+var latlng = {"lat": 35.0116363, "lng": 135.7680294}
 
 
 // Code & Listeners
@@ -180,6 +256,11 @@ $(document).ready(function() {
     wikipediaQuery();
     countryInfoQuery();
     newsQuery();
+
+    console.log(latlng);
+    
+
+
 
 
 

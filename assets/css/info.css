@@ -80,7 +80,7 @@ nav > a {
 
 
 
-.carousel-control-prev-icon,
+/* .carousel-control-prev-icon,
 .carousel-control-next-icon {
   height: 100px;
   width: 100px;
@@ -100,7 +100,7 @@ nav > a {
   content: '<';
   font-size: 55px;
   color: red;
-}
+} */
 
 
 #country_headlines_container {
@@ -118,4 +118,11 @@ nav > a {
     color: gray;
     font-size: small;
 
+}
+
+#map {
+    height: 800px;
+    width: 100%;
+    overflow: visible;
+    margin-bottom: 30px;
 }
