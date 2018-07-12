@@ -1,0 +1,101 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: rgb(240, 240, 240);
+    background: url("../images/travelbackground.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover; 
+    -moz-background-size: cover;   
+    -o-background-size: cover;     
+    background-size: cover; 
+    box-sizing: border-box;    
+}
+header {
+    height: 150px;
+    background: rgb(23, 177, 129);
+    text-transform: uppercase;
+}
+header > h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Calibri, candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    color: rgb(255, 255, 255);
+    line-height: 150px;
+    font-size: 72px;
+    letter-spacing: 10px;
+    font-weight: 700;
+}
+#nav_container {
+    height: 60px;
+    background: rgb(19, 145, 106);
+    border-bottom: 10px solid rgb(23, 177, 129); 
+    font-family: Calibri, candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+#quote_container{
+    border-top: 10px solid rgb(19, 145, 106);
+    width: 100%;
+    margin-bottom: -100px;
+}
+h3{
+    font-family: 'Dancing Script', cursive;
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 45px;
+    line-height: 60px;
+    text-align-last: right;
+}
+nav {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+}
+nav > a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    line-height: 50px;
+    font-weight: bold;
+}
+a, a:hover, a:active, a:visited, a:focus {
+    text-decoration:none;
+}
+a:hover {
+   color: #74ffba;
+}
+a:active{
+    color: lightskyblue;
+}
+a:visited {
+    color: black;
+}
+#search_container {
+    margin-top: 10%;
+    background: rgb(19, 145, 106);
+    background: rgba(23, 177, 129, 0.9);
+    padding: 35px;
+    border-radius: 3px;
+}
+    #searchTitle {
+        margin-top: 18px;
+        padding: 0;
+        text-align: center;
+        font-family: 'Permanent Marker', cursive;
+        color: black;
+        font-size: 30px;
+        letter-spacing: 4px;
+    }
+
+    #buttonSubmit {
+        margin-top: 8px;
+        margin-left:30px;
+        background: rgb(19, 145, 106);
+        border:rgba(23, 177, 129);
+        font-family: 'Permanent Marker', cursive;
+        font-size: 30px;
+        width:125px;
+    }
