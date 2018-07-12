@@ -1,0 +1,128 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(240, 240, 240);
+}
+
+header {
+    height: 150px;
+    background: rgb(23, 177, 129);
+    text-transform: uppercase;
+}
+
+header > h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Calibri, candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    color: rgb(255, 255, 255);
+    line-height: 150px;
+    font-size: 72px;
+    letter-spacing: 10px;
+}
+
+#nav_container {
+    height: 60px;
+    background: rgb(19, 145, 106);
+    border-bottom: 10px solid rgb(23, 177, 129);
+}
+
+nav {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav > a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+#country_info_container {
+    text-align: center;
+    border: solid 1px black;
+}
+
+#destination_name {
+    text-align: center;
+    margin: 30px;
+}
+
+.flag {
+    max-width: 80%;
+}
+
+#city_snapshot {
+    text-align: center;
+    border: solid 1px black;
+}
+
+.carousel {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel_image {
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+}
+
+
+
+/* .carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: red;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: red;
+} */
+
+
+#country_headlines_container {
+    text-align: center;
+    border: solid 1px black;
+}
+
+
+.story_title {
+    font-weight: bold;
+
+}
+
+.story_description {
+    color: gray;
+    font-size: small;
+
+}
+
+#map {
+    height: 800px;
+    width: 100%;
+    overflow: visible;
+    margin-bottom: 30px;
+}
