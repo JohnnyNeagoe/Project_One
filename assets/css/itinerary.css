@@ -1,0 +1,11 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 150px;
+    background: rgb(23, 177, 129);
+    text-transform: uppercase;
+}
