@@ -45,21 +45,5 @@ nav > a {
     line-height: 50px;
     font-weight: bold;
 }
-#bookingTable th{
-    background:  rgb(23, 177, 129);
-    font-family: Calibri, candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
-    color: rgb(255, 255, 255);
-    font-size: 24px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(19, 145, 106);
-    border-bottom-width: 8px;
-}
-/*makes the add to itinerary table cell change from cursor hover*/
-#itin:hover{
-    cursor: pointer;
-    background-color: #ccc;
-    color: rgb(23, 177, 129);
-  }
-#itin{
-    font-weight: bold;
-}
+
+
