@@ -55,35 +55,69 @@ var months = [
 
 // Declare Functions
 function googlePlacesQuery() {
-    mapsQueryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userDestination[0] + "+" + userDestination[1] + "&language=en&key=" + googleAPIKey;
-    console.log(mapsQueryURL);
+/*     mapsQueryURL = "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + userDestination[0] + "+" + userDestination[1] + "&language=en&key=" + googleAPIKey;
+    console.log(mapsQueryURL); */
 
-    $.ajax({
+    service = new google.maps.places.PlacesService($("#service_helper").get(0));
+    service.findPlaceFromQuery({
+        query: userDestination[0] + " " + userDestination[1],
+        fields: ["formatted_address", "geometry", "icon", "id", "name", "place_id"]
+    }, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            googlePlaceID = results[0].place_id;
+            destinationLatLng = results[0].geometry.location;
+            populatePhotoArray();
+            initMap();
+        } else {
+            alert(status);
+        }
+    });
+
+
+
+/*     $.ajax({
         url: mapsQueryURL,
         method: "GET"
     }).then(function(response) {
         googlePlaceID = response.results[0].place_id;
         destinationLatLng = response.results[0].geometry.location;
         console.log(destinationLatLng);
-    }).then(populatePhotoArray).then(initMap);
+    }).then(populatePhotoArray).then(initMap); */
 }
 
 function populatePhotoArray() {
-    placesQueryURL = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + googlePlaceID + "&key=" + googleAPIKey;
-    console.log(placesQueryURL);
+/*     placesQueryURL = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + googlePlaceID + "&key=" + googleAPIKey;
+    console.log(placesQueryURL); */
 
-    $.ajax({
+    service = new google.maps.places.PlacesService($("#service_helper2").get(0));
+    service.getDetails({
+        placeId: googlePlaceID,
+        fields: ["address_component", "adr_address", "alt_id", "formatted_address", "geometry", "icon", "id", "name", "permanently_closed", "photo", "place_id", "plus_code", "scope", "type", "url", "utc_offset", "vicinity"]
+    }, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.photos.length; i++) {
+                $("<div>").addClass("carousel-item").append("<img class=\"d-block carousel_image\" src=" + results.photos[i].getUrl({maxHeight: 1500}) + ">").appendTo(".carousel-inner");
+            }
+
+            $(".carousel-item:first").addClass("active");
+
+        } else {
+            alert(status);
+        }
+    });
+
+/*     $.ajax({
         url: placesQueryURL,
         method: "GET"
     }).then(function(response) {
         for (var i = 0; i < response.result.photos.length; i++) {
             googlePhotosArray.push(response.result.photos[i].photo_reference);
         }
-    }).then(populatePhotoCarousel);
+    }).then(populatePhotoCarousel); */
     
 }
 
-function populatePhotoCarousel() {
+/* function populatePhotoCarousel() {
 
     for (var i = 0; i < googlePhotosArray.length; i++) {
         photosQueryURL = "https://maps.googleapis.com/maps/api/place/photo?maxheight=300&photoreference=" + googlePhotosArray[i] + "&key=" + googleAPIKey;
@@ -93,7 +127,7 @@ function populatePhotoCarousel() {
 
     $(".carousel-item:first").addClass("active");
 
-}
+} */
 
 /* function geonamesQuery() {
     geonamesURL = "http://api.geonames.org/wikipediaSearchJSON?q=" + userDestination[0] + "&maxRows=10&username=msvendsentan";
@@ -126,7 +160,7 @@ function newsQuery() {
         method: "GET"
     }).then(function(response) {
        
-        for (var i = 0; i < response.articles.length; i++) {
+        for (var i = 0; i < 5; i++) {
            
             var storyContainer = $("<div>");
             storyContainer.addClass("story_container");
