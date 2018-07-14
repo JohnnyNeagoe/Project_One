@@ -7,8 +7,10 @@ var input = document.getElementById('search-input');
 function hideBar(){
     if (localStorage.getItem("destination")){
         $("#nav_container").show();
+        $("#quote_container").show();
     } else {
         $("#nav_container").hide();
+        $("#quote_container").hide();
         getLocation();
     }
 }
