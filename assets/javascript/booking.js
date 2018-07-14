@@ -23,6 +23,7 @@ for (var i = 0; i < destination.length; i++) {
 console.log(destination);
 $('#inputDestination').attr("value", destination[0]);
 
+
  //pulls up the table of results for hotel bookings
 $("#submit-button").on("click", function(){
     
@@ -51,7 +52,7 @@ $("#submit-button").on("click", function(){
             //constructing the table little messy cause i had to add a lot of data attributes to the last cell
             $('#bookingTable').append('<tr><td>'+ response.Result[i].StarRating +'</td><td>' + "$"+response.Result[i].AveragePricePerNight+'</td><td>'+ "$"+ response.Result[i].TotalPrice +'</td><td>'+ response.Result[i].CheckInDate +'</td><td>'+ response.Result[i].CheckOutDate +'</td><td><a href=' + bookingLink + ">Click Here to Book</a></td><td id=itin data-rooms = "+response.Result[i].Rooms+" data-starrating = "+response.Result[i].StarRating+" data-priceavg= "+response.Result[i].AveragePricePerNight+" data-totalprice="+response.Result[i].TotalPrice+" data-checkin="+response.Result[i].CheckInDate+" data-checkout="+response.Result[i].CheckOutDate+" data-link= https://www.hotwire.com/hotels/details/" + resultId2 + "-->Click Here to Add Booking to Itinerary</td></tr>");
           }
-  //end of for loop^
+  //end of for loop
           //click event to move data about booking to itinerary. not linked to actual itinerary yet but the console log works.
           $('#bookingTable').on( 'click', 'td', function () {
           itinRooms = ($(this).attr('data-rooms'));
@@ -68,21 +69,24 @@ $("#submit-button").on("click", function(){
           localStorage.setItem('itinLink', itinLink);
         } );
       }) 
-      KAYAK.embed({
-        container: document.getElementById("kayakSearchWidgetContainer"),
-        defaultProduct: "flights",
-        enabledProducts: ["hotels", "flights"],
-        startDate: "2015-12-24",
-        endDate: "2016-01-3",
-        origin: "New York, NY",
-        destination: localStorage.getItem("Destination"),
-        ssl: true,
-        affiliateId: "acme_corp",
-        isInternalLoad: false,
-        lc: "en",
-        cc: "us",
-        mc: "EUR"
-        });
+})
+
+$(document).ready(function() {
+  KAYAK.embed({
+    container: document.getElementById("kayakSearchWidgetContainer"),
+    defaultProduct: "flights",
+    enabledProducts: ["flights"],
+    startDate: localStorage.getItem('itinCheckin', itinCheckin),
+    endDate: localStorage.getItem('itinCheckout', itinCheckout),
+    origin: localStorage.getItem("origin"),
+    destination: localStorage.getItem("destination"),
+    ssl: true,
+    affiliateId: "acme_corp",
+    isInternalLoad: false,
+    lc: "en",
+    cc: "us",
+    mc: "EUR"
+    });
 })
 
 
