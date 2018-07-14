@@ -3,8 +3,17 @@ var userLocation = document.getElementById("sampUserStorage");
 var autocomplete;
 var locationChosen;
 var input = document.getElementById('search-input');
+
+function hideBar(){
+    if (localStorage.getItem("destination")){
+        $("#nav_container").show();
+    } else {
+        $("#nav_container").hide();
+        getLocation();
+    }
+}
 $(document).ready(function () {
-    $("#nav_container").hide();
+    hideBar();
 });
 
 function initAutocomplete() {
@@ -26,7 +35,7 @@ function initAutocomplete() {
         localStorage.setItem("destination", locationChosen);
         console.log(locationChosen);
     });
-    getLocation();
+    
 }
     // Allow user to submit when pressing enter
     input.addEventListener("keyup", function(event) {
@@ -39,7 +48,9 @@ function initAutocomplete() {
     // Do not allow user to enter anything but a letter in the textfield
     $(document).ready(function() {
         $(input).keypress(function(key) {
-            if(key.charCode < 65 || key.charCode > 90 && key.charCode < 97 || key.charCode > 122) return false;
+            if(key.charCode > 65 || key.charCode < 90 && key.charCode > 97 || key.charCode < 122 && key.charCode == 32) return true;
+            else {return false;
+            }
         });
     });
     function getLocation(){
