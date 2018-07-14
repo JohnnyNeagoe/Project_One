@@ -299,3 +299,11 @@ label {
     height:300px;
 }
 
+#flight{
+    position: absolute;
+    top:105%;
+    width:350px;
+    height:300px;
+    left:5px;
+}
+

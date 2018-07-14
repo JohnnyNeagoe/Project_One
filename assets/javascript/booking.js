@@ -82,7 +82,7 @@ $("#submit-button").on("click", function(){
         lc: "en",
         cc: "us",
         mc: "EUR"
-        });      
+        });
 })
 
 
