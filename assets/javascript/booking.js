@@ -36,7 +36,7 @@ $("#submit-button").on("click", function(){
     children = $("#inputChildren").val().trim();
 
     //contruct URL for ajax
-    hotelQuery = "http://api.hotwire.com/v1/search/hotel?apikey=" + keyHotel + "&dest=" + destination + "&rooms=" + rooms + "&startdate=" + startDate + "&enddate=" + endDate + "&adults=" + adults + "&children=" + children + "&format=json";
+    hotelQuery = "https://cors-anywhere.herokuapp.com/http://api.hotwire.com/v1/search/hotel?apikey=" + keyHotel + "&dest=" + destination + "&rooms=" + rooms + "&startdate=" + startDate + "&enddate=" + endDate + "&adults=" + adults + "&children=" + children + "&format=json" + "&limit=10";
    //initialize ajax
     $.ajax({
         url: hotelQuery,
@@ -54,20 +54,20 @@ $("#submit-button").on("click", function(){
   //end of for loop^
           //click event to move data about booking to itinerary. not linked to actual itinerary yet but the console log works.
           $('#bookingTable').on( 'click', 'td', function () {
-            itinRooms = ($(this).attr('data-rooms'));
-            itinStar = ($(this).attr('data-starrating'));
-            itinTotal = ($(this).attr('data-totalprice'));
-            itinCheckin = ($(this).attr('data-checkin'));
-            itinCheckout = ($(this).attr('data-checkout'));
-            itinLink = ($(this).attr('data-link'));
-            localStorage.setItem('itinRooms', itinRooms);
-            localStorage.setItem('itinStar', itinStar);
-            localStorage.setItem('itinTotal', itinTotal);
-            localStorage.setItem('itinCheckin', itinCheckin);
-            localStorage.setItem('itinCheckout', itinCheckout);
-            localStorage.setItem('itinLink', itinLink);
+          itinRooms = ($(this).attr('data-rooms'));
+          itinStar = ($(this).attr('data-starrating'));
+          itinTotal = ($(this).attr('data-totalprice'));
+          itinCheckin = ($(this).attr('data-checkin'));
+          itinCheckout = ($(this).attr('data-checkout'));
+          itinLink = ($(this).attr('data-link'));
+          localStorage.setItem('itinRooms', itinRooms);
+          localStorage.setItem('itinStar', itinStar);
+          localStorage.setItem('itinTotal', itinTotal);
+          localStorage.setItem('itinCheckin', itinCheckin);
+          localStorage.setItem('itinCheckout', itinCheckout);
+          localStorage.setItem('itinLink', itinLink);
         } );
-      })  
+      }) 
       KAYAK.embed({
         container: document.getElementById("kayakSearchWidgetContainer"),
         defaultProduct: "flights",
@@ -75,7 +75,7 @@ $("#submit-button").on("click", function(){
         startDate: "2015-12-24",
         endDate: "2016-01-3",
         origin: "New York, NY",
-        destination: "Boston, MA",
+        destination: localStorage.getItem("Destination"),
         ssl: true,
         affiliateId: "acme_corp",
         isInternalLoad: false,
@@ -84,6 +84,8 @@ $("#submit-button").on("click", function(){
         mc: "EUR"
         });
 })
+
+
 
 
 
