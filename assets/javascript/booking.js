@@ -9,6 +9,19 @@ var adults;
 var hotelQuery = "http://api.hotwire.com/v1/search/hotel?apikey=" + keyHotel + "&dest=" + destination + "&rooms=" + rooms + "&startdate=" + startDate + "&enddate=" + endDate + "&adults=" + adults + "&children=" + children ;
 var bookingData = [];
 var data = [];
+var destVar = localStorage.getItem("destination");
+var destination = destVar.split(",");
+var itinRooms;
+var itinStar;
+var itinTotal;
+var itinCheckin;
+var itinCheckout;
+var itinLink;
+for (var i = 0; i < destination.length; i++) {
+   destination[i] = destination[i].trim();
+}
+console.log(destination);
+$('#inputDestination').attr("value", destination[0]);
 
  //pulls up the table of results for hotel bookings
 $("#submit-button").on("click", function(){
@@ -41,18 +54,35 @@ $("#submit-button").on("click", function(){
   //end of for loop^
           //click event to move data about booking to itinerary. not linked to actual itinerary yet but the console log works.
           $('#bookingTable').on( 'click', 'td', function () {
-            console.log($(this).attr('data-rooms'))
-            console.log($(this).attr('data-starrating'))
-            console.log($(this).attr('data-priceavg'))
-            console.log($(this).attr('data-totalprice'))
-            console.log($(this).attr('data-checkin'))
-            console.log($(this).attr('data-checkout'))
-            console.log($(this).attr('data-link'))
+            itinRooms = ($(this).attr('data-rooms'));
+            itinStar = ($(this).attr('data-starrating'));
+            itinTotal = ($(this).attr('data-totalprice'));
+            itinCheckin = ($(this).attr('data-checkin'));
+            itinCheckout = ($(this).attr('data-checkout'));
+            itinLink = ($(this).attr('data-link'));
+            localStorage.setItem('itinRooms', itinRooms);
+            localStorage.setItem('itinStar', itinStar);
+            localStorage.setItem('itinTotal', itinTotal);
+            localStorage.setItem('itinCheckin', itinCheckin);
+            localStorage.setItem('itinCheckout', itinCheckout);
+            localStorage.setItem('itinLink', itinLink);
         } );
-      }) 
-
-    
-       
+      })  
+      KAYAK.embed({
+        container: document.getElementById("kayakSearchWidgetContainer"),
+        defaultProduct: "flights",
+        enabledProducts: ["hotels", "flights"],
+        startDate: "2015-12-24",
+        endDate: "2016-01-3",
+        origin: "New York, NY",
+        destination: "Boston, MA",
+        ssl: true,
+        affiliateId: "acme_corp",
+        isInternalLoad: false,
+        lc: "en",
+        cc: "us",
+        mc: "EUR"
+        });
 })
 
 
