@@ -1,5 +1,4 @@
 //User Geolocation --> find how to track inside div, for use in price calcualtion of flight/transportation
-var userLocation = document.getElementById("sampUserStorage");
 var autocomplete;
 var locationChosen;
 var input = document.getElementById('search-input');
@@ -53,6 +52,7 @@ function initAutocomplete() {
 function getLocation(){
     if (navigator.geolocation){
     navigator.geolocation.getCurrentPosition(showPosition);
+    
     } else {userLocation.innerHTML="Geolocation is not supported by this browser.";}
 }
 function showPosition(position) {
@@ -62,8 +62,8 @@ function showPosition(position) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({ 'latLng': latlng }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
-            if (results[2]) {
-                userLocation.innerHTML="<p>User Location" + results[7].formatted_address;
+            if (results[5]) {
+                localStorage.setItem("origin" , results[5].formatted_address);
             }
         }
     });
