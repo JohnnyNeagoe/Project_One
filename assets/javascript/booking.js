@@ -43,6 +43,8 @@ $("#submit-button").on("click", function(){
    // destination = $("#inputDestination").val().trim();
    startDate = $("#inputStartDate").val().trim();
    endDate = $("#inputEndDate").val();
+   endDateParsed = moment(endDate).format('MM/DD/YYYY');
+   startDateParsed = moment(startDate).format('MM/DD/YYYY');
    rooms = $("#inputRooms").val().trim();
    adults = $("#inputAdults").val().trim();
    children = $("#inputChildren").val().trim();
@@ -83,26 +85,8 @@ $("#submit-button").on("click", function(){
       console.log(hotelInfo);
     } );
   }) 
-
-
-$(document).ready(function() {
-  KAYAK.embed({
-    container: document.getElementById("kayakSearchWidgetContainer"),
-    defaultProduct: "flights",
-    enabledProducts: ["flights"],
-    startDate: localStorage.getItem('itinCheckin', itinCheckin),
-    endDate: localStorage.getItem('itinCheckout', itinCheckout),
-    origin: localStorage.getItem("origin"),
-    destination: localStorage.getItem("destination"),
-    ssl: true,
-    affiliateId: "acme_corp",
-    isInternalLoad: false,
-    lc: "en",
-    cc: "us",
-    mc: "EUR"
-    });
-
 })
+
 
 //flight booking widget
 $(document).ready(function() {
