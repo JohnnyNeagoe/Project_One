@@ -17,11 +17,16 @@ var itinTotal;
 var itinCheckin;
 var itinCheckout;
 var itinLink;
+var tod = moment().format('YYYY-MM-DD');
+var tom = moment().add('day',1).format('YYYY-MM-DD')
 for (var i = 0; i < destination.length; i++) {
    destination[i] = destination[i].trim();
 }
 console.log(destination);
 $('#inputDestination').attr("value", destination[0]);
+$('#inputStartDate').attr("value", tod);
+$('#inputEndDate').attr("value", tom);
+
 
 
  //pulls up the table of results for hotel bookings
@@ -32,12 +37,14 @@ $("#submit-button").on("click", function(){
     // destination = $("#inputDestination").val().trim();
     startDate = $("#inputStartDate").val().trim();
     endDate = $("#inputEndDate").val(); 
+    endDateParsed = moment(endDate).format('MM/DD/YYYY');
+    startDateParsed = moment(startDate).format('MM/DD/YYYY');
     rooms = $("#inputRooms").val().trim();
     adults = $("#inputAdults").val().trim();
     children = $("#inputChildren").val().trim();
 
     //contruct URL for ajax
-    hotelQuery = "https://cors-anywhere.herokuapp.com/http://api.hotwire.com/v1/search/hotel?apikey=" + keyHotel + "&dest=" + destination + "&rooms=" + rooms + "&startdate=" + startDate + "&enddate=" + endDate + "&adults=" + adults + "&children=" + children + "&format=json" + "&limit=10";
+    hotelQuery = "https://cors-anywhere.herokuapp.com/http://api.hotwire.com/v1/search/hotel?apikey=" + keyHotel + "&dest=" + destination + "&rooms=" + rooms + "&startdate=" + startDateParsed + "&enddate=" + endDateParsed + "&adults=" + adults + "&children=" + children + "&format=json" + "&limit=10";
    //initialize ajax
     $.ajax({
         url: hotelQuery,
