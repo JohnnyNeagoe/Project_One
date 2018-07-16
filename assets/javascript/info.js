@@ -303,14 +303,15 @@ $(document).ready(function() {
         selectionInputVal = $("#selection_input").val().trim();
         poiSelections.push(selectionInputVal);
         $("#selection_input").val("");
-        populateMapCheckboxes();        
+        populateMapCheckboxes();
+        mapCompleteRemove();        
     });
 
     $("#reset_queries").on("click", function() {
         poiSelections = ["Museums", "Restaurants", "Worship", "Attractions", "Points of Interest"];
         populateMapCheckboxes();
         mapCompleteRemove();
-    })
+    });
 
 
 });
