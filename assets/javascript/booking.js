@@ -21,8 +21,8 @@ var hotelArray = [localStorage.getItem('hotelBooking')];
 var hotelInfo;
 var itinText;
 var itinArray = [localStorage.getItem('itinerary')];
-var tod = moment().format('YYYY-MM-DD');
-var tom = moment().add('day',1).format('YYYY-MM-DD')
+var tod = moment().add('day',1).format('YYYY-MM-DD');
+var tom = moment().add('day',2).format('YYYY-MM-DD')
 for (var i = 0; i < destination.length; i++) {
   destination[i] = destination[i].trim();
 }
@@ -50,7 +50,7 @@ $("#submit-button").on("click", function(){
    children = $("#inputChildren").val().trim();
 
    //contruct URL for ajax
-   hotelQuery = "https://cors-anywhere.herokuapp.com/http://api.hotwire.com/v1/search/hotel?apikey=" + keyHotel + "&dest=" + destination + "&rooms=" + rooms + "&startdate=" + startDate + "&enddate=" + endDate + "&adults=" + adults + "&children=" + children + "&format=json" + "&limit=10";
+   hotelQuery = "https://cors-anywhere.herokuapp.com/http://api.hotwire.com/v1/search/hotel?apikey=" + keyHotel + "&dest=" + destination + "&rooms=" + rooms + "&startdate=" + startDateParsed + "&enddate=" + endDateParsed + "&adults=" + adults + "&children=" + children + "&format=json" + "&limit=10";
    //initialize ajax
     //initialize ajax
    $.ajax({
