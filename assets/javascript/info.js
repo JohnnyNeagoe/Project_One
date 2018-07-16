@@ -13,6 +13,9 @@ var googlePlaceID;
 var googlePhotoID;
 var googlePhotosArray = [];
 
+
+var map, service;
+
 //https://maps.googleapis.com/maps/api/place/textsearch/json?query=kyoto+japan&language=en&key=AIzaSyCN3EyjOpztvL3D3bhE9zYi7KoSpczjM1s
 var mapsQueryURL;
 
@@ -52,6 +55,12 @@ var months = [
     "December"
 ];
 
+var poiSelections = ["Museums", "Restaurants", "Worship", "Attractions", "Points of Interest"];
+
+var markers = {};
+
+var selectionInputVal;
+
 
 // Declare Functions
 function googlePlacesQuery() {
@@ -73,16 +82,6 @@ function googlePlacesQuery() {
         }
     });
 
-
-
-/*     $.ajax({
-        url: mapsQueryURL,
-        method: "GET"
-    }).then(function(response) {
-        googlePlaceID = response.results[0].place_id;
-        destinationLatLng = response.results[0].geometry.location;
-        console.log(destinationLatLng);
-    }).then(populatePhotoArray).then(initMap); */
 }
 
 function populatePhotoArray() {
@@ -106,39 +105,11 @@ function populatePhotoArray() {
         }
     });
 
-/*     $.ajax({
-        url: placesQueryURL,
-        method: "GET"
-    }).then(function(response) {
-        for (var i = 0; i < response.result.photos.length; i++) {
-            googlePhotosArray.push(response.result.photos[i].photo_reference);
-        }
-    }).then(populatePhotoCarousel); */
+
     
 }
 
-/* function populatePhotoCarousel() {
 
-    for (var i = 0; i < googlePhotosArray.length; i++) {
-        photosQueryURL = "https://maps.googleapis.com/maps/api/place/photo?maxheight=300&photoreference=" + googlePhotosArray[i] + "&key=" + googleAPIKey;
-        $("<div>").addClass("carousel-item").append("<img class=\"d-block carousel_image\" src=" + photosQueryURL + ">").appendTo(".carousel-inner");
-        //$("#city_photo_carousel").append("<img class=\"carousel_image\" src=" + photosQueryURL + ">");
-    }
-
-    $(".carousel-item:first").addClass("active");
-
-} */
-
-/* function geonamesQuery() {
-    geonamesURL = "http://api.geonames.org/wikipediaSearchJSON?q=" + userDestination[0] + "&maxRows=10&username=msvendsentan";
-    
-    $.ajax({
-        url: geonamesURL,
-        method: "GET"
-    }).then(function(response) {
-        $("#city_description").html("<p>" + response.geonames[0].summary + "</p>")
-    });
-} */
 
 function wikipediaQuery() {
     wikipediaURL = "https://en.wikipedia.org/api/rest_v1/page/summary/" + userDestination[0];
@@ -220,70 +191,79 @@ function countryClimateQuery() {
 
 }
 
-var map, service;
 
 function initMap() {
-    // The map, centered at Uluru
     map = new google.maps.Map(
         document.getElementById('map'), {zoom: 12, center: destinationLatLng});
-    // The marker, positioned at Uluru
     var marker = new google.maps.Marker({position: destinationLatLng, map: map});
+   
+}
+
+function populateMapCheckboxes() {
+    $("#filters").empty();
+    for (var i = 0; i < poiSelections.length; i++) {
+        var checkbox = $("<input type=\"checkbox\" class=\"checkbox\"></input>");
+        var label = $("<label></label>");
+        checkbox.attr("value", poiSelections[i]).attr("id", "selection_" + poiSelections[i])
+        label.attr("for", "selection_" + poiSelections[i]).html(poiSelections[i]);
+        $("<li>").append(checkbox).append(label).appendTo("#filters");
+    }
+}
+
+function mapSelectionAdd(query) {
     service = new google.maps.places.PlacesService(map);
     service.nearbySearch({
-        location: destinationLatLng,         
+        location: destinationLatLng,
         radius: 20000,
-        keyword: "Points of Interest"
+        keyword: query
     }, function (results, status) {
-        console.log(results);
         if (status === google.maps.places.PlacesServiceStatus.OK) {
+            var arr = [];
             results.forEach(function (p) {
                 var m = new google.maps.Marker({
-                   position: p.geometry.location,
-                   icon: {
+                    position: p.geometry.location,
+                    icon: {
                         url: p.icon,
                         scaledSize: new google.maps.Size(24,24)
-                   },
-                   title: p.name,
-                   map: map
-                });                  
+                    },
+                    title: p.name,
+                    animation: google.maps.Animation.DROP,
+                    map: map
+                });
+                arr.push(m);
             });
+            markers[query] = arr;
         } else {
             alert(status);
         }
-    });    
+        console.log(markers)
+    });
 }
 
-
-
-//Unnecessary because free news plan is max 1 month in the past.
-/* function dateBacktrack() {
-    var dateObj = new Date();
-    var month = dateObj.getUTCMonth() + 1; //months from 1-12
-    var day = dateObj.getUTCDate();
-    var year = dateObj.getUTCFullYear();
-
-    var monthDelay = 1;
-
-    var newMonth = month - monthDelay;
-    var newDay = day;
-    var newYear = year;
-
-    if (newMonth < 1) {
-        newMonth = newMonth + 12;
-        newYear = newYear - 1;
+function mapSelectionRemove(query) {
+    for (var i = 0; i < markers[query].length; i++) {
+        markers[query][i].setMap(null);
     }
+    delete markers[query];
 
-    newsDate = newYear + "-" + newMonth + "-" + newDay;
-    console.log(newsDate);
-} */
+}
 
+function mapCompleteRemove() {
 
-var latlng = {"lat": 35.0116363, "lng": 135.7680294}
+    $.each(markers, function(key, value) {
+        for (var i = 0; i < value.length; i++) {
+            value[i].setMap(null);
+        }
+        delete markers[key];
+    });
+
+}
 
 
 // Code & Listeners
 
 $(document).ready(function() {
+
     userDestinationString = localStorage.getItem("destination");
     userDestination = userDestinationString.split(",");
 
@@ -305,14 +285,33 @@ $(document).ready(function() {
     wikipediaQuery();
     countryInfoQuery();
     newsQuery();
-
-    console.log(latlng);
-
+    populateMapCheckboxes();
 
 
+    $(document).on("click", "#filters :checkbox", function() {
 
+        if ($(this).is(":checked")) {
+            mapSelectionAdd($(this).attr("value"));
+        } else if ($(this).is(":not(:checked)")) {
+            mapSelectionRemove($(this).attr("value"));
+        }        
 
+    });
 
+    $("#add_selection").on("click", function() {
+        event.preventDefault();
+        selectionInputVal = $("#selection_input").val().trim();
+        poiSelections.push(selectionInputVal);
+        $("#selection_input").val("");
+        populateMapCheckboxes();
+        mapCompleteRemove();        
+    });
+
+    $("#reset_queries").on("click", function() {
+        poiSelections = ["Museums", "Restaurants", "Worship", "Attractions", "Points of Interest"];
+        populateMapCheckboxes();
+        mapCompleteRemove();
+    });
 
 
 });

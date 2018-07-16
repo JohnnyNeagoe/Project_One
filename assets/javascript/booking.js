@@ -21,16 +21,22 @@ var hotelArray = [localStorage.getItem('hotelBooking')];
 var hotelInfo;
 var itinText;
 var itinArray = [localStorage.getItem('itinerary')];
-
+var tod = moment().format('YYYY-MM-DD');
+var tom = moment().add('day',1).format('YYYY-MM-DD')
 for (var i = 0; i < destination.length; i++) {
   destination[i] = destination[i].trim();
 }
 console.log(destination);
 $('#inputDestination').attr("value", destination[0]);
+$('#inputStartDate').attr("value", tod);
+$('#inputEndDate').attr("value", tom);
+
+
 
 
 //pulls up the table of results for hotel bookings
 $("#submit-button").on("click", function(){
+
    
    event.preventDefault();  
    //capture user input
@@ -77,6 +83,25 @@ $("#submit-button").on("click", function(){
       console.log(hotelInfo);
     } );
   }) 
+
+
+$(document).ready(function() {
+  KAYAK.embed({
+    container: document.getElementById("kayakSearchWidgetContainer"),
+    defaultProduct: "flights",
+    enabledProducts: ["flights"],
+    startDate: localStorage.getItem('itinCheckin', itinCheckin),
+    endDate: localStorage.getItem('itinCheckout', itinCheckout),
+    origin: localStorage.getItem("origin"),
+    destination: localStorage.getItem("destination"),
+    ssl: true,
+    affiliateId: "acme_corp",
+    isInternalLoad: false,
+    lc: "en",
+    cc: "us",
+    mc: "EUR"
+    });
+
 })
 
 //flight booking widget

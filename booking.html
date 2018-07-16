@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="assets/css/reset.css" type="text/css">
@@ -12,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Permanent+Marker" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://rawgit.com/moment/moment/2.2.1/min/moment.min.js"></script>
 </head>
 <body>
     <header><h1>WANDERLUST</h1></header>
@@ -36,11 +35,11 @@
                         </div>
                         <div class="form-group">
                             <label for="startDate">Start Date</label>
-                            <input type="text" class="form-control" id="inputStartDate" aria-describedby="roleHelp" placeholder="MM/DD/YYYY" value="10/01/2018">
+                            <input type="date" class="form-control" id="inputStartDate" aria-describedby="roleHelp" placeholder="MM/DD/YYYY">
                         </div>
                         <div class="form-group">
                             <label for="role">End Date</label>
-                            <input type="text" class="form-control" id="inputEndDate" aria-describedby="dateHelp" placeholder="MM/DD/YYYY" value="10/02/2018">
+                            <input type="date" class="form-control" id="inputEndDate" aria-describedby="dateHelp" placeholder="MM/DD/YYYY">
                         </div>     
                         <div class="form-group">
                             <label for="rooms">Rooms</label>
@@ -52,7 +51,7 @@
                         </div>
                         <div class="form-group">
                                 <label for="children"># of Children</label>
-                                <input type="number" class="form-control" id="inputChildren" aria-describedby="monthlyRateHelp" placeholder="Number of Children" value="1">
+                                <input type="number" class="form-control" id="inputChildren" aria-describedby="monthlyRateHelp" placeholder="Number of Children" value="0">
                         </div>
                         <button type="button" class="btn btn-primary" style="float:right;" id="submit-button">Submit</button>  
                         <div class=col-10 id="flight">
