@@ -39,17 +39,20 @@ nav > a {
     line-height: 50px;
     font-weight: bold;
 }
-a, a:hover, a:active, a:visited, a:focus {
+.banner:focus {
     text-decoration:none;
 }
-a:hover {
+.banner:hover {
    color: #74ffba;
+   text-decoration: none;
 }
-a:active{
+.banner:active{
     color: lightskyblue;
+    text-decoration: none;
 }
-a:visited {
+.banner:visited {
     color: black;
+    text-decoration: none;
 }
 .headingFont{
     font-family: 'Montserrat', sans-serif;
@@ -250,6 +253,43 @@ a:visited {
 
 
 
+@media screen and (max-width: 400px) {
+    header {
+        height: 150px;
+        background: rgb(23, 177, 129);
+        text-transform: uppercase;
+    }
+    header > h1 {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-family: Calibri, candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        color: rgb(255, 255, 255);
+        line-height: 150px;
+        font-size: 72px;
+        letter-spacing: 10px;
+        font-weight: 700;
+    }
+    #nav_container {
+        height: 60px;
+        background: rgb(19, 145, 106);
+        border-bottom: 10px solid rgb(23, 177, 129); 
+        font-family: Calibri, candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+        width:100%;
+    }
+    nav {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+    }
+    nav > a {
+        font-size: 20px;
+        line-height: 25px;
+    }
+}
 
 
 
