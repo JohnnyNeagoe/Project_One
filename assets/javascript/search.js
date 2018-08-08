@@ -26,7 +26,7 @@ function initAutocomplete() {
     // When the user presses the submit button, pull the chosen loatio into some Div/form
     // Link this submission to booking div in booking tab/code and to info div in info tab/code
     $("#buttonSubmit").on("click", function(){
-        locationChosen = autocomplete.gm_accessors_.place.fd.j;
+        locationChosen = autocomplete.gm_accessors_.place.dd.j;
         $(".sample-div").text(locationChosen);
         location.href = "information.html"
         localStorage.setItem("destination", locationChosen);
