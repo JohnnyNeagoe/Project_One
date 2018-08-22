@@ -1,4 +1,4 @@
-//User Geolocation --> find how to track inside div, for use in price calcualtion of flight/transportation
+//User Geolocation --> find how to track inside div, for use in price calculation of flight/transportation
 var autocomplete;
 var locationChosen;
 var input = document.getElementById('search-input');
@@ -23,10 +23,10 @@ function initAutocomplete() {
         /** @type {!HTMLInputElement} */(input),
         {types: ['(cities)']}
     );
-    // When the user presses the submit button, pull the chosen loatio into some Div/form
+    // When the user presses the submit button, pull the chosen location into some Div/form
     // Link this submission to booking div in booking tab/code and to info div in info tab/code
     $("#buttonSubmit").on("click", function(){
-        locationChosen = autocomplete.gm_accessors_.place.fd.j;
+        locationChosen = document.getElementById("search-input").value;
         $(".sample-div").text(locationChosen);
         location.href = "information.html"
         localStorage.setItem("destination", locationChosen);
@@ -41,7 +41,7 @@ function initAutocomplete() {
             document.getElementById("buttonSubmit").click();
         }
     });
-    // Do not allow user to enter anything but a letter in the textfield
+    // Do not allow user to enter anything but a letter in the text-field
     $(document).ready(function() {
         $(input).keypress(function(key) {
             if(key.charCode > 65 || key.charCode < 90 && key.charCode > 97 || key.charCode < 122 && key.charCode == 32){ return true;
