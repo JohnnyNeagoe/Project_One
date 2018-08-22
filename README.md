@@ -1,9 +1,5 @@
 # Group Project
-## Website built by:
-## Johnny Neagoe (JohnnyNeagoe), 
-## Michael Svendsen (msvendsentan), 
-## Alex Dawson (alexdawson21), 
-## Valareza Fattahi (Valarezafattahi)
+## Website built by: Johnny Neagoe (JohnnyNeagoe), Michael Svendsen (msvendsentan), Alex Dawson (alexdawson21), Valareza Fattahi (Valarezafattahi)
 
 ### WanderLust
 #### Easy to use travel destination website
