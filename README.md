@@ -23,17 +23,21 @@ Javascript Standard
 
 ![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/Images/Search.png?raw=true)
 
+
 - Info Page:
 
 ![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/Images/info.png?raw=true)
+
 
 - Info Page (Map): 
 
 ![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/Images/Map.png?raw=true)
 
+
 - Itinerary:
 
 ![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/Images/Itinerary.png?raw=true)
+
 
 - Hotels:
 
