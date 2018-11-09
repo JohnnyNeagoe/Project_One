@@ -1,10 +1,10 @@
 # WanderLust
 
-An end to end, fully functioning website for potential travellers to use in order to gather more information about any desired destination on the planet.
+An end to end, fully functioning website for potential travellers to use in order to gather more information about any future destination which they would like to visit.
 
 ## Motivation
 
-This Website gives users the opportunity to search for any location around the glob in a fast and efficent manner. Information about the users desired distination will be displayed, with the user also havin ghte ability to add anything they might like to their planner.
+This Website gives users the opportunity to search for any location around the glob in a fast and efficent manner. Information about the users desired distination will be displayed, with the user also having the ability to add anything they might like to their planner.
 
 ## Build status
 
@@ -19,7 +19,10 @@ Javascript Standard
 
 ## Screenshots / Instructions
 
-- To be added
+- Front Page
+- Destination Page
+- Information Page
+- Itinerary
 
 ## Tech/Frameworks used
 
