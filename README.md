@@ -21,23 +21,23 @@ Javascript Standard
 
 - Front Page:
 
-![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/search.png?raw=true)
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/Images/Search.png?raw=true)
 
 - Info Page:
 
-![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/info.png?raw=true)
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/Images/info.png?raw=true)
 
 - Info Page (Map): 
 
-![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/map.png?raw=true)
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/Images/Map.png?raw=true)
 
 - Itinerary:
 
-![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/itinerary.png?raw=true)
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/Images/Itinerary.png?raw=true)
 
 - Hotels:
 
-![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/hotels.png?raw=true)
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/Images/Hotels.png?raw=true)
 
 
 ## Tech/Frameworks used
