@@ -19,10 +19,26 @@ Javascript Standard
 
 ## Screenshots / Instructions
 
-- Front Page
-- Destination Page
-- Information Page
-- Itinerary
+- Front Page:
+
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/search.png?raw=true)
+
+- Info Page:
+
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/info.png?raw=true)
+
+- Info Page (Map): 
+
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/map.png?raw=true)
+
+- Itinerary:
+
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/itinerary.png?raw=true)
+
+- Hotels:
+
+![alt text](https://github.com/JohnnyNeagoe/WanderLust/blob/master/assets/images/hotels.png?raw=true)
+
 
 ## Tech/Frameworks used
 
